@@ -48,6 +48,14 @@ describe('The function', function () {
 		rect11 = Object.freeze({
 			left: 10, top: 10,
 			width: 0, height: 25
+		}),
+		rect12 = Object.freeze({
+			left: -4, top: 3,
+			width: 1, height: 1
+		}),
+		rect13 = Object.freeze({
+			left: -4, top: 7,
+			width: 1, height: 1
 		});
 
 	describe('`areIntersected`', function () {
@@ -123,6 +131,12 @@ describe('The function', function () {
 					intersected = areIntersected(rect1, rect7);
 					expect(intersected).toBe(false);
 				});
+
+				it(`${stringifyRect(rect13)} and ${stringifyRect(rect12)}`, function () {
+					intersected = areIntersected(rect13, rect12);
+					expect(intersected).toBe(false);
+				});
+
 			});
 
 			describe('adjacent(surrounding) rectangles are not intersected ', function () {
@@ -140,6 +154,7 @@ describe('The function', function () {
 					intersected = areIntersected(rect1, rect10);
 					expect(intersected).toBe(false);
 				});
+				
 			});
 		});
 	});
@@ -192,7 +207,9 @@ describe('The function', function () {
 					rect8,
 					rect9,
 					rect10,
-					rect11
+					rect11,
+					rect12,
+					rect13
 				];
 
 				filtered = filterVisible(parent, rectangles);
